@@ -1,0 +1,13 @@
+name: VanillaPlugin
+version: 1.0
+authors: [KingSeyfo]
+main: Main.Start
+api-version: 1.19
+description: Vanilla Plugin
+commands:
+  wasted:
+    description: Siehe deine Zeit auf dem Server!
+  point:
+    description: Punkte-Koordinaten speichern!
+  timber:
+    description: Timber Modus wechseln! 
