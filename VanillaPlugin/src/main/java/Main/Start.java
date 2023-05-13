@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -19,6 +18,7 @@ import Commands.Timber_cmd;
 import Commands.Wasted_cmd;
 import Listener.ChatFarbe;
 import Listener.DeathMessage_listener;
+import Listener.JoinQuit_listener;
 import Listener.SaveAnnounce;
 import Listener.Timber_listener;
 import net.kyori.adventure.text.Component;
@@ -42,7 +42,8 @@ public class Start extends JavaPlugin {
 		pm.registerEvents(new ChatFarbe(), this);
 		pm.registerEvents(new DeathMessage_listener(), this);
 		pm.registerEvents(new SaveAnnounce(this), this);
-		pm.registerEvents(new Timber_listener(this), (Plugin) this);
+		pm.registerEvents(new Timber_listener(this), this);
+		pm.registerEvents(new JoinQuit_listener(), this);
 
 		this.getCommand("wasted").setExecutor(new Wasted_cmd());
 		this.getCommand("point").setExecutor(new Point_cmd());
