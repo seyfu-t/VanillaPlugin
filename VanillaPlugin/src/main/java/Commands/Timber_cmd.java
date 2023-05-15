@@ -27,7 +27,7 @@ public class Timber_cmd implements CommandExecutor{
 		}
 		return false;
 	}
-	boolean write(Player p, boolean state) {
+	public boolean write(Player p, boolean state) {
 		new YamlConfiguration();
 		FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		cfg.set(p.getName(), state);

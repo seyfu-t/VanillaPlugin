@@ -6,10 +6,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.plugin.Plugin;
 
+import Commands.Timber_cmd;
+import Scoreboard.TimePlayed;
 import net.kyori.adventure.text.Component;
 
-public class JoinQuit_listener implements Listener {
+public class JoinQuit implements Listener {
+	Plugin pl;
+	public JoinQuit(Plugin pl) {
+		this.pl = pl;
+	}
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
@@ -22,6 +29,8 @@ public class JoinQuit_listener implements Listener {
 	    String displayName = "§7[§b§l" + playtimeString+"§7] §a" + p.getName();
 	    
 		e.joinMessage(Component.text(displayName+" §ajoined§7."));
+		
+		new TimePlayed().initPlayer(p, pl);
 		
 	}
 	@EventHandler
@@ -36,6 +45,13 @@ public class JoinQuit_listener implements Listener {
 	    String displayName = "§7[§b§l" + playtimeString+"§7] §a" + p.getName();
 		
 		e.quitMessage(Component.text(displayName+" §cquit§7."));
+		
+		
+		Timber_cmd timber = new Timber_cmd();
+		boolean state = timber.read(p);
+		if(state) {
+			timber.write(p,!state);
+		}
 	}
 
 }
